@@ -1,0 +1,74 @@
+# Adding a new task
+    # Output: Task added successfully (ID: 1)
+# Updating and deleting tasks
+# Marking a task as in progress or done
+# Listing all tasks
+# Listing tasks by status
+
+# Inicial tasks list
+# Initial tasks list
+tasks = []
+
+def displayTask(all_tasks):
+    print("\nYour Tasks:")
+    if len(all_tasks) == 0:
+        print("No tasks found!")
+    else:
+        for index, task in enumerate(all_tasks):
+            print(f"{index + 1}. {task}")
+
+def addTask(all_tasks):
+    new_task = input("Add a task: ")
+    all_tasks.append(new_task)
+    print("Task added successfully!")
+
+def removeTask(all_tasks):
+    displayTask(all_tasks)
+    task_number = input("Enter the number of the task to remove: ")
+
+    if task_number.isdigit():
+        index = int(task_number) - 1
+        if 0 <= index < len(all_tasks):
+            removed = all_tasks.pop(index)
+            print(f"Task '{removed}' removed!")
+        else:
+            print("Invalid task number.")
+    else:
+        print("Please enter a valid number.")
+
+def editTask(all_tasks):
+    displayTask(all_tasks)
+    task_number = input("Enter the number of the task to edit: ")
+
+    if task_number.isdigit():
+        index = int(task_number) - 1
+        if 0 <= index < len(all_tasks):
+            new_text = input("Enter new task description: ")
+            all_tasks[index] = new_text
+            print("Task updated successfully!")
+        else:
+            print("Invalid task number.")
+    else:
+        print("Please enter a valid number.")
+
+def newOperation(all_tasks):
+    while True:
+        displayTask(all_tasks)
+        operation = input(
+            "\nPress A to add, E to edit, R to remove, Q to quit: "
+        ).upper()
+
+        if operation == 'A':
+            addTask(all_tasks)
+        elif operation == 'E':
+            editTask(all_tasks)
+        elif operation == 'R':
+            removeTask(all_tasks)
+        elif operation == 'Q':
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid option. Try again.")
+
+# Start application
+newOperation(tasks)
