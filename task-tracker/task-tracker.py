@@ -17,7 +17,7 @@ def displayTask(all_tasks):
     else:
         for task in all_tasks:
             print(
-                f"{task['id]']}. {task["title"]} "
+                f"{task['id']}. {task['title']} "
                 f"[{task['status']}]"
                 )
 
@@ -77,7 +77,7 @@ def updateStatus(all_tasks):
                     "Enter status (pending / in progress / done): "
                 ).lower()
                 if status in ["pending", "in progress", "done"]:
-                    task["status"] = status
+                    task["status"] = status.title()
                     print("task status updated!")
                 else:
                     print("Invalid status.")
@@ -87,12 +87,9 @@ def updateStatus(all_tasks):
                 print("Please enter a valid number.")
 
 def listByStatus(all_tasks):
-    status = input(
-        "Enter status to filter (pending / in progress / done): "
-    ).lower()
+    status = input("Enter status to filter (pending / in progress / done): ").lower()
 
-    filtered = [t for t in all_tasks if t["status"] == status]
-
+    filtered = [t for t in all_tasks if t["status"].lower() == status]
     if not filtered:
         print(f"No tasks with status '{status}'.")
     else:
